@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>フォームのバリデーション状態 — :has() デモ</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 2rem;
+      background: #f5f5f5;
+    }
+
+    form {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    .form-group {
+      margin-bottom: 1.25rem;
+      padding: 1rem;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      background: #fff;
+      transition: border-color 0.2s, background-color 0.2s;
+    }
+
+    /* :has() を使って、無効な入力を含むグループ全体を赤くする */
+    .form-group:has(input:not(:placeholder-shown):invalid) {
+      border-color: #e53e3e;
+      background-color: #fff5f5;
+    }
+
+    /* :has() を使って、有効な入力を含むグループ全体を緑にする */
+    .form-group:has(input:not(:placeholder-shown):valid) {
+      border-color: #38a169;
+      background-color: #f0fff4;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-size: 0.875rem;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .form-group:has(input:not(:placeholder-shown):invalid) label {
+      color: #c53030;
+    }
+
+    .form-group:has(input:not(:placeholder-shown):valid) label {
+      color: #276749;
+    }
+
+    input {
+      width: 100%;
+      padding: 0.5rem 0.75rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 1rem;
+      box-sizing: border-box;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: #4a90d9;
+      box-shadow: 0 0 0 2px rgba(74, 144, 217, 0.2);
+    }
+
+    .hint {
+      margin-top: 0.4rem;
+      font-size: 0.8rem;
+      color: #666;
+    }
+
+    .form-group:has(input:not(:placeholder-shown):invalid) .hint {
+      color: #c53030;
+    }
+
+    .form-group:has(input:not(:placeholder-shown):valid) .hint {
+      color: #276749;
+    }
+
+    button {
+      width: 100%;
+      padding: 0.75rem;
+      background: #4a90d9;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #357abd;
+    }
+  </style>
+</head>
+<body>
+  <form novalidate>
+    <div class="form-group">
+      <label for="username">ユーザー名（3文字以上）</label>
+      <input type="text" id="username" minlength="3" placeholder="例: taro" required>
+      <p class="hint">3文字以上で入力してください</p>
+    </div>
+
+    <div class="form-group">
+      <label for="email">メールアドレス</label>
+      <input type="email" id="email" placeholder="例: taro@example.com" required>
+      <p class="hint">正しいメールアドレスを入力してください</p>
+    </div>
+
+    <div class="form-group">
+      <label for="tel">電話番号（数字のみ・10〜11桁）</label>
+      <input type="tel" id="tel" pattern="[0-9]{10,11}" placeholder="例: 09012345678" required>
+      <p class="hint">数字のみで10〜11桁入力してください</p>
+    </div>
+
+    <button type="submit">送信する</button>
+  </form>
+</body>
+</html>

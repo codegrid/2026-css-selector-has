@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>@supports によるサポート確認 — :has() デモ</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 2rem;
+      background: #f5f5f5;
+    }
+
+    .result {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 1.5rem 1.75rem;
+      border-radius: 10px;
+      line-height: 1.7;
+    }
+
+    .result-title {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 1.1rem;
+      font-weight: bold;
+      margin-bottom: 0.75rem;
+    }
+
+    .result-title .icon {
+      font-size: 1.4rem;
+    }
+
+    .result p {
+      margin: 0;
+      font-size: 0.95rem;
+    }
+
+    code {
+      background: rgba(0, 0, 0, 0.08);
+      padding: 0.1em 0.4em;
+      border-radius: 4px;
+      font-size: 0.9em;
+    }
+
+    /* :has() 対応ブラウザ向け */
+    @supports selector(:has(*)) {
+      .result {
+        background: #f0fff4;
+        border: 2px solid #38a169;
+        color: #276749;
+      }
+
+      .result-title {
+        color: #276749;
+      }
+
+      .result--unsupported {
+        display: none;
+      }
+    }
+
+    /* :has() 非対応ブラウザ向け */
+    @supports not selector(:has(*)) {
+      .result {
+        background: #fff5f5;
+        border: 2px solid #e53e3e;
+        color: #742a2a;
+      }
+
+      .result-title {
+        color: #c53030;
+      }
+
+      .result--supported {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="result result--supported">
+    <div class="result-title">
+      <span class="icon">✅</span>
+      このブラウザは :has() に対応しています
+    </div>
+    <p><code>@supports selector(:has(*))</code> の結果が <code>true</code> でした。<code>:has()</code> を使ったスタイルが適用されます。</p>
+  </div>
+
+  <div class="result result--unsupported">
+    <div class="result-title">
+      <span class="icon">⚠️</span>
+      このブラウザは :has() に対応していません
+    </div>
+    <p><code>@supports selector(:has(*))</code> の結果が <code>false</code> でした。<code>:has()</code> を使ったスタイルは適用されません。フォールバックのスタイルを用意してください。</p>
+  </div>
+</body>
+</html>

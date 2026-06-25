@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>見出しの連続によるマージン調整 — :has() デモ</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 2rem;
+      background: #f4f4f8;
+      color: #222;
+      min-height: 100vh;
+    }
+
+    .demo-title {
+      font-size: 1.25rem;
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .lead {
+      color: #666;
+      text-align: center;
+      font-size: 0.875rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .doc {
+      max-width: 640px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    }
+
+    .doc h2 {
+      font-size: 1.4rem;
+      margin: 1.5rem 0 0.75rem;
+      padding-bottom: 0.25rem;
+      border-bottom: 2px solid #4a90d9;
+    }
+
+    .doc h3 {
+      font-size: 1.1rem;
+      margin: 1.25rem 0 0.5rem;
+      color: #333;
+    }
+
+    .doc p {
+      margin: 0 0 1rem;
+      line-height: 1.8;
+      color: #444;
+    }
+
+    /* 見出しの直後に別の見出しが続くとき、間のマージンを縮める */
+    .doc h2:has(+ h3),
+    .doc h3:has(+ h4) {
+      margin-bottom: 0.25rem;
+    }
+  </style>
+</head>
+<body>
+  <p class="demo-title">見出しが連続するときのマージン調整</p>
+  <p class="lead">h2の直後にh3が続く箇所だけ、間の余白が詰まっています</p>
+
+  <div class="doc">
+    <h2>セクションの見出し</h2>
+    <h3>すぐ下にサブ見出しが続くケース</h3>
+    <p>h2の直後にh3が来ています。本来のh2の下マージンのままだと、見出しどうしのあいだが間延びしてしまいます。:has(+ h3)で余白を詰めることで、見出しのまとまりが自然に見えます。</p>
+    <p>続く本文です。本文との余白はそのまま保たれています。</p>
+
+    <h2>本文がすぐ続く見出し</h2>
+    <p>こちらのh2の直後は本文（p）なので、マージンは詰められず、通常どおりの余白が確保されています。:has(+ h3)の条件に当てはまらないためです。</p>
+  </div>
+</body>
+</html>

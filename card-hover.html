@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>カードホバー効果 — :has() デモ</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 2rem;
+      background: #1a1a2e;
+      min-height: 100vh;
+    }
+
+    h1 {
+      color: #fff;
+      font-size: 1.25rem;
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      color: #aaa;
+      text-align: center;
+      font-size: 0.875rem;
+      margin-bottom: 2rem;
+    }
+
+    .card-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .card {
+      padding: 1.5rem;
+      border-radius: 12px;
+      background: #16213e;
+      border: 1px solid #0f3460;
+      color: #e0e0e0;
+      cursor: default;
+      transition: opacity 0.25s, transform 0.25s;
+    }
+
+    .card-icon {
+      font-size: 2rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .card h2 {
+      font-size: 1rem;
+      margin: 0 0 0.5rem;
+      color: #fff;
+    }
+
+    .card p {
+      font-size: 0.8rem;
+      color: #888;
+      text-align: left;
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    /* :has() を使って、ホバー中のカード以外を暗くする */
+    .card-list:has(.card:hover) .card:not(:hover) {
+      opacity: 0.35;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      border-color: #4a90d9;
+    }
+  </style>
+</head>
+<body>
+  <h1>カードリストにホバーしてみよう</h1>
+  <p>ホバーしたカード以外がフェードアウトします</p>
+
+  <div class="card-list">
+    <div class="card">
+      <div class="card-icon">🎨</div>
+      <h2>デザイン</h2>
+      <p>UIコンポーネントやレイアウトの設計について</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">⚡</div>
+      <h2>パフォーマンス</h2>
+      <p>ウェブサイトの読み込み速度や描画の最適化</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🔒</div>
+      <h2>セキュリティ</h2>
+      <p>安全なウェブアプリケーションの実装手法</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">♿</div>
+      <h2>アクセシビリティ</h2>
+      <p>すべてのユーザーが使いやすいサイト作り</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">📱</div>
+      <h2>レスポンシブ</h2>
+      <p>さまざまなデバイスに対応したレイアウト手法</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🛠️</div>
+      <h2>ツール</h2>
+      <p>開発を効率化するビルドツールやエディタ設定</p>
+    </div>
+  </div>
+</body>
+</html>

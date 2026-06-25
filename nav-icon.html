@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>サブメニューにアイコンを追加 — :has() デモ</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 2rem;
+      background: #1a1a2e;
+      color: #e0e0e0;
+      min-height: 100vh;
+    }
+
+    h1 {
+      color: #fff;
+      font-size: 1.25rem;
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .lead {
+      color: #aaa;
+      text-align: center;
+      font-size: 0.875rem;
+      margin-bottom: 1.5rem;
+    }
+
+    nav {
+      max-width: 320px;
+      margin: 0 auto;
+      background: #16213e;
+      border: 1px solid #0f3460;
+      border-radius: 12px;
+      padding: 0.5rem;
+    }
+
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav li {
+      margin: 0;
+    }
+
+    nav a {
+      display: block;
+      padding: 0.6rem 0.9rem;
+      color: #e0e0e0;
+      text-decoration: none;
+      border-radius: 8px;
+    }
+
+    nav a:hover {
+      background: #0f3460;
+    }
+
+    /* サブメニュー（ul）を子に持つ li のリンクだけに▼を付ける */
+    nav li:has(ul) > a::after {
+      content: ' ▼';
+      font-size: 0.75em;
+      color: #4a90d9;
+    }
+
+    /* サブメニュー */
+    nav li ul {
+      padding-left: 1rem;
+    }
+
+    nav li ul a {
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+  <h1>サブメニューを持つ項目に▼が付く</h1>
+  <p class="lead">ulを子に持つliのリンクだけにアイコンが追加されています</p>
+
+  <nav>
+    <ul>
+      <li><a href="#">ホーム</a></li>
+      <li>
+        <a href="#">製品</a>
+        <ul>
+          <li><a href="#">ノートPC</a></li>
+          <li><a href="#">デスクトップ</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#">サポート</a>
+        <ul>
+          <li><a href="#">よくある質問</a></li>
+          <li><a href="#">お問い合わせ</a></li>
+        </ul>
+      </li>
+      <li><a href="#">会社情報</a></li>
+    </ul>
+  </nav>
+</body>
+</html>
