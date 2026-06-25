@@ -58,8 +58,8 @@
       background: #0f3460;
     }
 
-    /* サブメニュー（ul）を子に持つ li のリンクだけに▼を付ける */
-    nav li:has(ul) > a::after {
+    /* 直接の子として ul を持つ li のリンクだけに▼を付ける */
+    nav li:has(> ul) > a::after {
       content: ' ▼';
       font-size: 0.75em;
       color: #4a90d9;
